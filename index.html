@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="assets/egg-raw.png" type="image/png">
+  <title>ZYVORA® – Engineering the Future of Life | Sexagem Embrionária In Ovo</title>
+  <meta name="description" content="ZYVORA® é uma startup de biotecnologia de precisão dedicada à sexagem embrionária in ovo. Engenharia, ciência e inteligência computacional para o futuro da avicultura.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#020D1C">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ZYVORA®">
+  <meta property="og:title" content="ZYVORA® | Engineering the Future of Life">
+  <meta property="og:description" content="Engenharia, ciência e tecnologia aplicadas ao futuro da avicultura. Sexagem embrionária in ovo.">
+  <meta property="og:image" content="assets/logo-zyvora-clean.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZYVORA® – Engineering the Future of Life">
+  <meta name="twitter:description" content="Biotecnologia aplicada à sexagem embrionária in ovo.">
+  <meta name="twitter:image" content="assets/logo-zyvora-clean.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Three.js Local 3D Graphics Engine & Texture Data -->
+  <script src="js/three.min.js"></script>
+  <script src="js/embryo-texture.js"></script>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Navegação principal">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo" aria-label="ZYVORA Home">
+        <img src="assets/logo-zyvora-clean.png" alt="ZYVORA® Engineering the Future of Life" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#tecnologia" class="nav__link">Tecnologia</a></li>
+        <li><a href="#processo" class="nav__link">Como Funciona</a></li>
+        <li><a href="#ciencia" class="nav__link">Ciência</a></li>
+        <li><a href="#beneficios" class="nav__link">Comparativo</a></li>
+        <li><a href="#futuro" class="nav__link">O Futuro</a></li>
+      </ul>
+
+      <a href="#contato" class="btn btn--nav" id="nav-cta">Fale Conosco</a>
+
+      <button class="nav__burger" id="nav-burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile" id="nav-mobile" role="dialog" aria-label="Menu mobile" aria-hidden="true">
+      <ul role="list">
+        <li><a href="#tecnologia" class="nav__link">Tecnologia</a></li>
+        <li><a href="#processo" class="nav__link">Como Funciona</a></li>
+        <li><a href="#ciencia" class="nav__link">Ciência</a></li>
+        <li><a href="#beneficios" class="nav__link">Comparativo</a></li>
+        <li><a href="#futuro" class="nav__link">O Futuro</a></li>
+        <li><a href="#contato" class="btn btn--primary">Fale com Especialistas</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-labelledby="hero-heading">
+
+      <!-- Animated background -->
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__orb hero__orb--1"></div>
+        <div class="hero__orb hero__orb--2"></div>
+        <div class="hero__orb hero__orb--3"></div>
+        <canvas class="hero__canvas" id="hero-canvas"></canvas>
+        <div class="hero__grid"></div>
+      </div>
+
+      <div class="container hero__container">
+
+        <!-- Coluna esquerda: texto institucional -->
+        <div class="hero__content" data-animate="fade-up">
+          <div class="hero__badge">
+            <span class="hero__badge-dot" aria-hidden="true"></span>
+            <span>BIOTECNOLOGIA DE PRECISÃO · IN OVO 2026</span>
+          </div>
+
+          <h1 class="hero__title" id="hero-heading">
+            THE FUTURE OF LIFE<br>
+            <span class="text-gradient">STARTS BEFORE</span><br>
+            HATCHING.
+          </h1>
+
+          <p class="hero__subtitle">
+            Engenharia, ciência e inteligência computacional aplicadas à sexagem embrionária in ovo — transformando a eficiência, a sustentabilidade e a ética da avicultura global.
+          </p>
+
+          <div class="hero__ctas">
+            <a href="#tecnologia" class="btn btn--primary btn--lg" id="hero-cta-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Conheça Nossa Tecnologia
+            </a>
+            <a href="#processo" class="btn btn--ghost btn--lg" id="hero-cta-secondary">
+              Como Funciona
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Stats em tempo real -->
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <span class="hero__stat-value">D-04</span>
+              <span class="hero__stat-label">Janela de Análise</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat">
+              <span class="hero__stat-value">100<span class="hero__stat-unit">%</span></span>
+              <span class="hero__stat-label">Não Invasivo</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat">
+              <span class="hero__stat-value">24<span class="hero__stat-unit">h</span></span>
+              <span class="hero__stat-label">Operação Contínua</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna direita: A CÂMARA INCUBADORA COM OVO REAL 3D FLUTUANTE & GIRANDO 360° -->
+        <div class="hero__visual" data-animate="fade-left" data-delay="150" aria-label="Incubadora Biotecnológica 3D ZYVORA com Ovo em Rotação 360°">
+          <div class="incubator-hero-chamber">
+
+            <!-- Backdrop Realista da Câmara de Incubação Industrial -->
+            <img src="assets/incubator-chamber-bg.png" alt="Câmara de Incubação Biotecnológica ZYVORA" class="incubator-chamber-backdrop-img" aria-hidden="true">
+
+            <!-- Brilho de base da incubadora -->
+            <div class="incubator-base-glow-fx" aria-hidden="true"></div>
+
+            <!-- Telemetria HUD flutuante à esquerda -->
+            <div class="incubator-hud-card incubator-hud-card--left" aria-hidden="true">
+              <div class="hud-tag">
+                <span class="hud-tag-dot"></span>
+                <span>BIO-OPTICAL SCAN</span>
+              </div>
+              <div class="hud-value">99.8% FIDELITY</div>
+              <div class="hud-sub">TEMP: 37.8°C | 52% RH</div>
+            </div>
+
+            <!-- Telemetria HUD flutuante à direita -->
+            <div class="incubator-hud-card incubator-hud-card--right" aria-hidden="true">
+              <div class="hud-tag">
+                <span class="hud-tag-dot"></span>
+                <span>IN OVO DETECTION</span>
+              </div>
+              <div class="hud-value">STAGE D-04</div>
+              <div class="hud-sub">STATUS: EMBRYO ACTIVE</div>
+            </div>
+
+            <!-- OVO 3D REAL TRANSLÚCIDO FLUTUANDO E GIRANDO EM WEBGL / THREE.JS -->
+            <div class="egg-3d-canvas-container" id="egg-3d-canvas-container" title="Clique e arraste para girar o ovo 360°"></div>
+
+            <!-- Controlador Interativo de Rotação 360° -->
+            <div class="controller-360">
+              <svg class="controller-360__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+              </svg>
+              <span>ROTAÇÃO 360°</span>
+              <span class="controller-360__angle">0°</span>
+              <button class="controller-360__btn" type="button" aria-label="Alternar rotação automática">AUTO ON</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+        <span>Rolar</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         PROBLEM (O CENÁRIO ATUAL)
+    ═══════════════════════════════════════ -->
+    <section class="problem" id="desafio" aria-labelledby="problem-heading">
+      <div class="container">
+
+        <div class="section-label" data-animate="fade-up">O Cenário Atual</div>
+        <h2 class="section-title" id="problem-heading" data-animate="fade-up" data-delay="100">
+          Os gargalos da avicultura industrial<br>
+          <span class="text-gradient">sem a sexagem in ovo.</span>
+        </h2>
+        <p class="section-subtitle" data-animate="fade-up" data-delay="200">
+          A ausência de tecnologias de análise precoce impõe desperdício maciço de energia, ocupação desnecessária de incubatórios e crescentes debates regulatórios globais.
+        </p>
+
+        <!-- Problem cards -->
+        <div class="problem__grid">
+          <div class="problem__card" data-animate="fade-up" data-delay="0">
+            <div class="problem__card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h3 class="problem__card-title">Desperdício Energético</h3>
+            <p class="problem__card-text">Milhões de ovos são mantidos sob controle rigoroso de temperatura e umidade por 21 dias completos, mesmo quando metade não integrará a cadeia de postura.</p>
+            <div class="problem__card-stat">
+              <span class="problem__card-stat-value">~50%</span>
+              <span class="problem__card-stat-label">recursos em ciclos excedentes</span>
+            </div>
+          </div>
+
+          <div class="problem__card" data-animate="fade-up" data-delay="100">
+            <div class="problem__card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3 class="problem__card-title">Sobrecarga de Capacidade</h3>
+            <p class="problem__card-text">Incubatórios industriais operam próximos ao limite físico de ocupação, com custos logísticos e de maquinário duplicados por falta de identificação antecipada.</p>
+            <div class="problem__card-stat">
+              <span class="problem__card-stat-value">21 Dias</span>
+              <span class="problem__card-stat-label">ocupação cega de incubadoras</span>
+            </div>
+          </div>
+
+          <div class="problem__card" data-animate="fade-up" data-delay="200">
+            <div class="problem__card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="problem__card-title">Pressão Regulatória & Ética</h3>
+            <p class="problem__card-text">Governos e consumidores internacionais estabelecem diretrizes cada vez mais severas contra o descarte pós-nascimento, demandando soluções antes da eclosão.</p>
+            <div class="problem__card-stat">
+              <span class="problem__card-stat-value">Global</span>
+              <span class="problem__card-stat-label">exigência ética inadiável</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transition -->
+        <div class="problem__transition" data-animate="fade-up">
+          <div class="problem__transition-line" aria-hidden="true"></div>
+          <p class="problem__transition-text">A ciência de fronteira redefinindo o padrão industrial.</p>
+          <div class="problem__transition-line" aria-hidden="true"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         HOW IT WORKS (O PROCESSO)
+    ═══════════════════════════════════════ -->
+    <section class="how-it-works" id="processo" aria-labelledby="how-heading">
+      <div class="container">
+
+        <div class="section-label" data-animate="fade-up">Processo Tecnológico</div>
+        <h2 class="section-title" id="how-heading" data-animate="fade-up" data-delay="100">
+          Do ovo incubado ao resultado<br>
+          <span class="text-gradient">sem romper o ciclo da vida.</span>
+        </h2>
+        <p class="section-subtitle" data-animate="fade-up" data-delay="200">
+          Um fluxo não invasivo e inteligente concebido para operar em harmonia com as rotinas industriais de incubação moderna.
+        </p>
+
+        <!-- Timeline em Etapas Visuais Conectadas -->
+        <div class="process-steps-grid" role="list" aria-label="Fluxo em 4 etapas da tecnologia ZYVORA">
+
+          <!-- Etapa 1: Ovo Incubado -->
+          <div class="process-step-card" data-animate="fade-up" data-delay="0" role="listitem">
+            <div class="process-step-card__img-wrapper">
+              <img src="assets/step-1-incubated-egg.svg" alt="Etapa 1: Ovo Incubado em Ambiente Controlado" class="process-step-card__img" loading="lazy">
+              <span class="process-step-card__tag">ETAPA 01</span>
+            </div>
+            <div class="process-step-card__body">
+              <h3 class="process-step-card__title">Ovo Incubado</h3>
+              <p class="process-step-card__desc">Disposição dos ovos férteis em bandejas industriais sob temperatura (37.8°C) e umidade rigorosamente calibradas na janela primária D-04.</p>
+              <div class="process-step-card__meta">
+                <span class="meta-dot"></span> Preservação Biológica Total
+              </div>
+            </div>
+          </div>
+
+          <!-- Conector Tecnológico 1-2 -->
+          <div class="process-step-connector" aria-hidden="true">
+            <div class="connector-line"></div>
+            <div class="connector-pulse"></div>
+          </div>
+
+          <!-- Etapa 2: Processo de Análise -->
+          <div class="process-step-card" data-animate="fade-up" data-delay="100" role="listitem">
+            <div class="process-step-card__img-wrapper">
+              <img src="assets/step-2-optical-scan.svg" alt="Etapa 2: Sensoriamento Bio-Óptico Não Invasivo" class="process-step-card__img" loading="lazy">
+              <span class="process-step-card__tag">ETAPA 02</span>
+            </div>
+            <div class="process-step-card__body">
+              <h3 class="process-step-card__title">Processo de Análise</h3>
+              <p class="process-step-card__desc">Emissão espectral óptica multi-comprimento de onda (450-850nm) que atravessa a casca sem qualquer contato físico perfurante ou risco microbiológico.</p>
+              <div class="process-step-card__meta">
+                <span class="meta-dot"></span> 100% Não Invasivo
+              </div>
+            </div>
+          </div>
+
+          <!-- Conector Tecnológico 2-3 -->
+          <div class="process-step-connector" aria-hidden="true">
+            <div class="connector-line"></div>
+            <div class="connector-pulse"></div>
+          </div>
+
+          <!-- Etapa 3: Identificação Embrionária -->
+          <div class="process-step-card" data-animate="fade-up" data-delay="200" role="listitem">
+            <div class="process-step-card__img-wrapper">
+              <img src="assets/step-3-embryo-identification.svg" alt="Etapa 3: Identificação e Classificação Algorítmica" class="process-step-card__img" loading="lazy">
+              <span class="process-step-card__tag">ETAPA 03</span>
+            </div>
+            <div class="process-step-card__body">
+              <h3 class="process-step-card__title">Identificação Embrionária</h3>
+              <p class="process-step-card__desc">Redes neurais e algoritmos proprietários decodificam as assinaturas espectrais de biomarcadores embrionários em frações de milissegundos.</p>
+              <div class="process-step-card__meta">
+                <span class="meta-dot"></span> Inferência Neural &lt; 2ms
+              </div>
+            </div>
+          </div>
+
+          <!-- Conector Tecnológico 3-4 -->
+          <div class="process-step-connector" aria-hidden="true">
+            <div class="connector-line"></div>
+            <div class="connector-pulse"></div>
+          </div>
+
+          <!-- Etapa 4: Resultado da Análise -->
+          <div class="process-step-card" data-animate="fade-up" data-delay="300" role="listitem">
+            <div class="process-step-card__img-wrapper">
+              <img src="assets/step-4-telemetry-result.svg" alt="Etapa 4: Resultado da Análise e Direcionamento Automatizado" class="process-step-card__img" loading="lazy">
+              <span class="process-step-card__tag process-step-card__tag--success">ETAPA 04</span>
+            </div>
+            <div class="process-step-card__body">
+              <h3 class="process-step-card__title">Resultado da Análise</h3>
+              <p class="process-step-card__desc">Telemetria direta com esteiras industriais automatizadas, direcionando cada lote com precisão operacional e zero desperdício da cadeia produtiva.</p>
+              <div class="process-step-card__meta">
+                <span class="meta-dot meta-dot--success"></span> Separação Limpa e Ética
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         FEATURES / TECNOLOGIA BENTO GRID
+    ═══════════════════════════════════════ -->
+    <section class="features" id="tecnologia" aria-labelledby="features-heading">
+      <div class="container">
+
+        <div class="section-label" data-animate="fade-up">Arquitetura de Precisão</div>
+        <h2 class="section-title" id="features-heading" data-animate="fade-up" data-delay="100">
+          A ciência que transforma<br>
+          <span class="text-gradient">o futuro da avicultura.</span>
+        </h2>
+        <p class="section-subtitle" data-animate="fade-up" data-delay="200">
+          Desenvolvemos uma abordagem proprietária de sexagem embrionária in ovo, unindo sensoriamento avançado, biologia do desenvolvimento e inteligência de dados.
+        </p>
+
+        <div class="features__grid">
+
+          <!-- Card 1: Large (Span 2) -->
+          <div class="feature-card feature-card--large" data-animate="fade-up" data-delay="0">
+            <div class="feature-card__glow" aria-hidden="true"></div>
+            <div class="feature-card__img-wrap">
+              <img src="assets/tech-embryonic-analysis.svg" alt="Tecnologia de Análise Embrionária Bio-Óptica ZYVORA" class="feature-card__img" loading="lazy">
+            </div>
+            <div class="feature-card__content">
+              <div class="feature-card__badge">100% Não Invasivo</div>
+              <h3 class="feature-card__title">Tecnologia de Análise Embrionária</h3>
+              <p class="feature-card__desc">Plataforma óptica não invasiva projetada para atuar diretamente nos estágios primários de incubação. A análise é realizada sem contato perfurante, eliminando riscos de contaminação e preservando integralmente a integridade biológica do ovo fértil.</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feature-card" data-animate="fade-up" data-delay="100">
+            <div class="feature-card__glow feature-card__glow--turquoise" aria-hidden="true"></div>
+            <div class="feature-card__img-wrap">
+              <img src="assets/tech-industrial-poultry.svg" alt="Inovação Aplicada à Avicultura em Escala Industrial" class="feature-card__img" loading="lazy">
+            </div>
+            <div class="feature-card__content">
+              <div class="feature-card__badge">Industrial Grade</div>
+              <h3 class="feature-card__title">Inovação na Avicultura</h3>
+              <p class="feature-card__desc">Projetada especificamente para as elevadas demandas de incubatórios industriais modernos, viabilizando ganhos de escala, eficiência e racionalização operacional com esteiras de alta velocidade.</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feature-card" data-animate="fade-up" data-delay="200">
+            <div class="feature-card__glow feature-card__glow--blue" aria-hidden="true"></div>
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div class="feature-card__badge">Live Telemetry</div>
+            <h3 class="feature-card__title">Processamento em Tempo Real</h3>
+            <p class="feature-card__desc">Classificação de dados espectrais em frações de milissegundos com sincronização contínua a sistemas ERP e controladores microclimáticos.</p>
+          </div>
+
+          <!-- Card 4: Wide (Span 2) -->
+          <div class="feature-card feature-card--wide" data-animate="fade-up" data-delay="300">
+            <div class="feature-card__glow" aria-hidden="true"></div>
+            <div class="feature-card__img-wrap">
+              <img src="assets/tech-scientific-rd.svg" alt="Desenvolvimento Científico e Bioinformática" class="feature-card__img" loading="lazy">
+            </div>
+            <div class="feature-card__content">
+              <h3 class="feature-card__title">Desenvolvimento Científico Contínuo</h3>
+              <p class="feature-card__desc">Pesquisa biotecnológica em constante expansão, combinando embriologia aviária, espectroscopia óptica e bioinformática para construir a próxima geração de soluções para a produção de proteína sustentável.</p>
+              <div class="feature-card__tags" aria-label="Áreas de Pesquisa">
+                <span class="feature-card__tag">Embriologia</span>
+                <span class="feature-card__tag">Biofotônica</span>
+                <span class="feature-card__tag">Visão Computacional</span>
+                <span class="feature-card__tag">Sustentabilidade</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SCIENCE & INNOVATION (REAL 3D DNA HELIX)
+    ═══════════════════════════════════════ -->
+    <section class="science" id="ciencia" aria-labelledby="science-heading">
+      <div class="container">
+        <div class="science__grid">
+
+          <!-- 3D DNA Double Helix Canvas em WebGL -->
+          <div class="science__visual" data-animate="fade-right" aria-label="Visualização Holográfica 3D do DNA">
+            <div class="hex-grid-bg"></div>
+            
+            <div class="dna-canvas-container" id="dna-canvas-container" title="Hélice de DNA 3D Interativa"></div>
+
+            <div class="sci-element" style="top:8%;right:10%;">
+              <svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" stroke-dasharray="4 3"/><circle cx="30" cy="30" r="14" stroke-dasharray="2 3"/><line x1="30" y1="4" x2="30" y2="56" opacity="0.4"/><line x1="4" y1="30" x2="56" y2="30" opacity="0.4"/></svg>
+            </div>
+            <div class="sci-element" style="bottom:10%;left:8%;">
+              <svg width="50" height="50" viewBox="0 0 50 50"><rect x="6" y="6" width="38" height="38" rx="6" stroke-dasharray="3 2"/><circle cx="25" cy="25" r="8"/><path d="M25 6v38M6 25h38" opacity="0.3"/></svg>
+            </div>
+          </div>
+
+          <!-- Science Content -->
+          <div class="science__content" data-animate="fade-left">
+            <div class="section-label">Fronteira Tecnológica</div>
+            <h2 class="section-title" id="science-heading">
+              Onde a ciência encontra<br>
+              <span class="text-gradient">a precisão in ovo.</span>
+            </h2>
+            <p class="section-subtitle" style="margin-bottom: var(--space-xl);">
+              Nossa abordagem une biologia celular, engenharia óptica e algoritmos preditivos. Investigamos os marcadores espectrais do ovo fértil para viabilizar decisões produtivas com máxima confiabilidade e respeito aos mais elevados padrões éticos globais.
+            </p>
+
+            <div class="science__pills">
+              <span class="science__pill">Embriologia Aviária</span>
+              <span class="science__pill">Espectroscopia Óptica</span>
+              <span class="science__pill">Bioinformática</span>
+              <span class="science__pill">Deep Learning</span>
+              <span class="science__pill">Automação Industrial</span>
+              <span class="science__pill">Bem-Estar Animal</span>
+            </div>
+
+            <!-- Visual Scientific Lab Cards: Microscopy & Spectrogram -->
+            <div class="science__lab-cards">
+              <div class="science__lab-card">
+                <img src="assets/science-microscopy-lens.svg" alt="Microscopia Confocal UV de Embriologia Aviária" class="science__lab-img" loading="lazy">
+                <div class="science__lab-info">
+                  <span class="science__lab-title">Microscopia Confocal UV</span>
+                  <span class="science__lab-desc">Resolução celular 400x com mapeamento fluoróforo</span>
+                </div>
+              </div>
+
+              <div class="science__lab-card">
+                <img src="assets/science-spectrogram-chart.svg" alt="Espectrofotometria de Absorção Óptica" class="science__lab-img" loading="lazy">
+                <div class="science__lab-info">
+                  <span class="science__lab-title">Espectrofotometria</span>
+                  <span class="science__lab-desc">Curvas de absorbância diferencial (450-850nm)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         BENEFITS (BEFORE / AFTER COMPARISON)
+    ═══════════════════════════════════════ -->
+    <section class="benefits" id="beneficios" aria-labelledby="benefits-heading">
+      <div class="container">
+
+        <div class="section-label" data-animate="fade-up">Impacto Real</div>
+        <h2 class="section-title" id="benefits-heading" data-animate="fade-up" data-delay="100">
+          Uma transformação<br>
+          <span class="text-gradient">mensurável e ética.</span>
+        </h2>
+        <p class="section-subtitle" data-animate="fade-up" data-delay="200">
+          O contraste entre o modelo convencional e o novo horizonte viabilizado pela tecnologia de sexagem in ovo ZYVORA.
+        </p>
+
+        <div class="compare" data-animate="fade-up" data-delay="300">
+
+          <!-- Coluna 1: Sem ZYVORA -->
+          <div class="compare__col compare__col--before">
+            <div class="compare__header">
+              <span class="compare__badge compare__badge--before">Modelo Convencional</span>
+            </div>
+            <ul class="compare__list" role="list" aria-label="Situação sem ZYVORA">
+              <li class="compare__item compare__item--no">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
+                21 dias completos de incubação para todos os ovos
+              </li>
+              <li class="compare__item compare__item--no">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
+                Desperdício massivo de eletricidade e gás de aquecimento
+              </li>
+              <li class="compare__item compare__item--no">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
+                Ocupação desnecessária de 50% do espaço do incubatório
+              </li>
+              <li class="compare__item compare__item--no">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
+                Sexagem manual pós-nascimento lenta e estressante
+              </li>
+              <li class="compare__item compare__item--no">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
+                Exposição a sanções comerciais e barreiras de exportação
+              </li>
+              <li class="compare__item compare__item--no">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/></svg>
+                Conflito ético insustentável perante o mercado consumidor
+              </li>
+            </ul>
+          </div>
+
+          <!-- Divisor com ícone -->
+          <div class="compare__divider" aria-hidden="true">
+            <div class="compare__divider-line"></div>
+            <div class="compare__divider-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M13 5.83l1.88 1.88-8.71 8.71H5v-1.17L13 5.83M17 2a1 1 0 00-.71.29l-1.83 1.83 3.75 3.75 1.83-1.83a1 1 0 000-1.41L17.71 2.3A1 1 0 0017 2z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="compare__divider-line"></div>
+          </div>
+
+          <!-- Coluna 2: Com ZYVORA -->
+          <div class="compare__col compare__col--after">
+            <div class="compare__header">
+              <span class="compare__badge compare__badge--after">Com ZYVORA®</span>
+            </div>
+            <ul class="compare__list" role="list" aria-label="Situação com ZYVORA">
+              <li class="compare__item compare__item--yes">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                Identificação precoce in ovo nos primeiros estágios
+              </li>
+              <li class="compare__item compare__item--yes">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                Redução drástica da pegada de carbono e custo elétrico
+              </li>
+              <li class="compare__item compare__item--yes">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                Capacidade produtiva real do incubatório duplicada
+              </li>
+              <li class="compare__item compare__item--yes">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                Análise totalmente óptica, automatizada e sem perfuração
+              </li>
+              <li class="compare__item compare__item--yes">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                Total conformidade com os mais rígidos padrões internacionais
+              </li>
+              <li class="compare__item compare__item--yes">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                Posicionamento de vanguarda em sustentabilidade e ética
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         O FUTURO DA AVICULTURA (INCUBATÓRIO PANORÂMICO & FINAL CTA)
+    ═══════════════════════════════════════ -->
+    <section class="future-hatchery" id="futuro" aria-labelledby="future-heading">
+      <div class="container">
+
+        <div class="future-hatchery__header" data-animate="fade-up">
+          <div class="section-label">O Futuro da Avicultura</div>
+          <h2 class="section-title" id="future-heading">
+            Redefinindo possibilidades.<br>
+            <span class="text-gradient">Construindo o futuro.</span>
+          </h2>
+          <p class="section-subtitle">
+            A convergência entre engenharia de precisão, inteligência artificial e biotecnologia aviária inaugurando um padrão global de eficiência operacional e compromisso ético.
+          </p>
+        </div>
+
+        <!-- Janela Panorâmica do Incubatório Industrial Moderno -->
+        <div class="hatchery-panorama-frame" data-animate="fade-up" data-delay="150">
+          <img src="assets/hatchery-panorama.png" alt="Incubatório Industrial Moderno ZYVORA com Iluminação Cinematográfica" class="hatchery-panorama-img" loading="lazy">
+          
+          <!-- Elementos Digitais e Telemetria Discreta -->
+          <div class="hatchery-hud-badge hatchery-hud-badge--tl">
+            <span class="hud-pulse"></span>
+            <span>FACILITY ID: ZYV-IND-01 · NOMINAL</span>
+          </div>
+
+          <div class="hatchery-hud-badge hatchery-hud-badge--tr">
+            <span>BIO-EFFICIENCY: +100%</span>
+          </div>
+
+          <div class="hatchery-hud-badge hatchery-hud-badge--bl">
+            <span>CAPACIDADE: 45.000 OVOS/HORA</span>
+          </div>
+
+          <div class="hatchery-hud-badge hatchery-hud-badge--br">
+            <span>ZERO PÓS-ECLOSÃO DESCARTE</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         FINAL CTA
+    ═══════════════════════════════════════ -->
+    <section class="cta-final" aria-labelledby="cta-heading">
+
+      <div class="cta-final__bg" aria-hidden="true">
+        <div class="cta-final__orb cta-final__orb--1"></div>
+        <div class="cta-final__orb cta-final__orb--2"></div>
+        <div class="cta-final__grid"></div>
+      </div>
+
+      <canvas id="cta-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0"></canvas>
+
+      <div class="container cta-final__container" style="position:relative;z-index:1">
+        <div class="cta-final__content" data-animate="fade-up">
+          <div class="cta-final__label">Pioneirismo & Conexão</div>
+          <h2 class="cta-final__title" id="cta-heading">
+            Faça parte da transformação<br>
+            <span class="text-gradient">da avicultura global.</span>
+          </h2>
+          <p class="cta-final__subtitle">
+            A ZYVORA une investidores, produtores e a comunidade científica para viabilizar um novo capítulo na biotecnologia. Conecte-se conosco para acompanhar de perto essa evolução.
+          </p>
+
+          <div class="cta-final__ctas">
+            <a href="#contato" class="btn btn--primary btn--xl" id="final-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Fale com Nossa Equipe
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="footer" id="contato" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+
+        <div class="footer__brand">
+          <a href="#hero" aria-label="ZYVORA Início">
+            <img src="assets/logo-zyvora-clean.png" alt="ZYVORA®" class="footer__brand-img">
+          </a>
+          <div class="footer__slogan">ENGINEERING THE FUTURE OF LIFE.</div>
+          <p class="footer__brand-text">
+            Startup de biotecnologia voltada à sexagem embrionária in ovo. Ciência de fronteira, engenharia óptica e responsabilidade ética para a avicultura global.
+          </p>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Institucional</h4>
+          <ul>
+            <li><a href="#tecnologia">Tecnologia</a></li>
+            <li><a href="#processo">Como Funciona</a></li>
+            <li><a href="#ciencia">Ciência & P&D</a></li>
+            <li><a href="#beneficios">Impacto Comparativo</a></li>
+            <li><a href="#futuro">O Futuro</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Ecossistema</h4>
+          <ul>
+            <li><a href="#">Comunidade Científica</a></li>
+            <li><a href="#">Relações com Investidores</a></li>
+            <li><a href="#">Imprensa & Mídia</a></li>
+            <li><a href="#">Carreiras & P&D</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Contato Comercial</h4>
+          <ul>
+            <li><a href="mailto:contato@zyvora.com">contato@zyvora.com</a></li>
+            <li><a href="#">São Paulo · SP | Brasil</a></li>
+            <li class="footer__note">Canais de atendimento em processo de expansão.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 ZYVORA&reg;. Todos os direitos reservados. Marca registrada.</p>
+        <div class="footer__bottom-links">
+          <a href="#">Termos de Uso</a>
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Compliance Ético</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main Application Script -->
+  <script src="js/main.js" defer></script>
+</body>
+</html>
