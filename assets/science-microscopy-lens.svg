@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00B4FF"/>
+      <stop offset="100%" stop-color="#00E5A0"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Microscope objective lens -->
+  <circle cx="200" cy="150" r="70" fill="#081B33"/>
+  <circle cx="200" cy="150" r="50" fill="url(#grad)" filter="url(#glow)"/>
+  <!-- UV light rays -->
+  <line x1="200" y1="150" x2="70" y2="150" stroke="url(#grad)" stroke-width="3"/>
+  <line x1="200" y1="150" x2="330" y2="150" stroke="url(#grad)" stroke-width="3"/>
+  <!-- Cellular pattern -->
+  <path d="M150 110 q20 -10 40 0 t40 0 t40 0" stroke="#00E5A0" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M150 190 q20 10 40 0 t40 0 t40 0" stroke="#00B4FF" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>

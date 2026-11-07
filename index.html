@@ -24,7 +24,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/styles.css">
@@ -173,17 +173,21 @@
               <div class="hud-sub">STATUS: EMBRYO ACTIVE</div>
             </div>
 
-            <!-- OVO 3D REAL TRANSLÚCIDO FLUTUANDO E GIRANDO EM WEBGL / THREE.JS -->
-            <div class="egg-3d-canvas-container" id="egg-3d-canvas-container" title="Clique e arraste para girar o ovo 360°"></div>
+            <!-- OVO INCUBADORA – IMAGEM PREMIUM COM EFEITOS CSS -->
+            <div class="egg-3d-canvas-container" id="egg-3d-canvas-container">
+              <img src="assets/egg-incubator-hero.png" alt="Ovo futurista em incubadora tecnológica ZYVORA" class="egg-hero-img" id="egg-hero-img">
+              <div class="egg-glow-ring" aria-hidden="true"></div>
+              <div class="egg-particles" aria-hidden="true"></div>
+            </div>
 
             <!-- Controlador Interativo de Rotação 360° -->
             <div class="controller-360">
               <svg class="controller-360__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
               </svg>
-              <span>ROTAÇÃO 360°</span>
-              <span class="controller-360__angle">0°</span>
-              <button class="controller-360__btn" type="button" aria-label="Alternar rotação automática">AUTO ON</button>
+              <span>VITAL STATUS: STABLE</span>
+              <span class="controller-360__angle">37.8°C</span>
+              <button class="controller-360__btn" type="button" aria-label="Status da incubadora">ACTIVE</button>
             </div>
 
           </div>

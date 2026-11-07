@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="beamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00B4FF"/>
+      <stop offset="100%" stop-color="#30D5FF"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Egg silhouette -->
+  <ellipse cx="200" cy="150" rx="60" ry="80" fill="#081B33"/>
+  <!-- Optical beam -->
+  <line x1="80" y1="150" x2="320" y2="150" stroke="url(#beamGrad)" stroke-width="8" filter="url(#glow)"/>
+  <!-- Spectral wave patterns -->
+  <path d="M80 150 q40 -30 80 0 t80 0 t80 0" stroke="#00E5A0" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M80 150 q40 -15 80 0 t80 0 t80 0" stroke="#00B4FF" stroke-width="2" fill="none" opacity="0.4"/>
+</svg>
