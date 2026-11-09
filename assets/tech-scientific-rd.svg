@@ -1,31 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00B4FF"/>
+    <linearGradient id="sciGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF"/>
+      <stop offset="50%" stop-color="#00B4FF"/>
       <stop offset="100%" stop-color="#00E5A0"/>
     </linearGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+    <linearGradient id="curveFillA" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00B4FF" stop-opacity="0.02"/>
+    </linearGradient>
+    <radialGradient id="sciBackglowWide" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#00B4FF" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#00E5A0" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#020D1C" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="sciNeon" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge>
-        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
-  <!-- Laboratory bench -->
-  <rect x="20" y="150" width="360" height="100" fill="#081B33" rx="10" ry="10"/>
-  <!-- Microscope -->
-  <path d="M100 200 h20 v-40 h-20 z" fill="#081B33"/>
-  <rect x="105" y="150" width="10" height="40" fill="url(#grad)" filter="url(#glow)"/>
-  <!-- Test tubes -->
-  <rect x="150" y="180" width="15" height="40" fill="#081B33"/>
-  <rect x="180" y="170" width="15" height="50" fill="#081B33"/>
-  <rect x="210" y="180" width="15" height="40" fill="#081B33"/>
-  <!-- DNA helix -->
-  <path d="M260 200 q20 -30 0 -60 q-20 30 0 60" stroke="url(#grad)" stroke-width="3" fill="none" filter="url(#glow)"/>
-  <path d="M280 200 q20 -30 0 -60 q-20 30 0 60" stroke="url(#grad)" stroke-width="3" fill="none" filter="url(#glow)"/>
-  <!-- Data charts -->
-  <rect x="300" y="170" width="40" height="20" fill="#00E5A0"/>
-  <rect x="300" y="200" width="40" height="30" fill="#00B4FF"/>
+
+  <rect width="620" height="280" fill="url(#sciBackglowWide)"/>
+
+  <!-- ==========================================
+       BARRAMENTO DE DADOS INTERLIGANDO OS 3 MÓDULOS
+       ========================================== -->
+  <g stroke="rgba(0,180,255,0.3)" stroke-width="1.2" stroke-dasharray="4 4" fill="none">
+    <path d="M 180 135 L 235 135"/>
+    <path d="M 375 135 L 430 135"/>
+  </g>
+  <!-- Pulsos de Conexão -->
+  <circle cx="207" cy="135" r="3" fill="#00F0FF" filter="url(#sciNeon)"/>
+  <circle cx="402" cy="135" r="3" fill="#00E5A0" filter="url(#sciNeon)"/>
+
+  <!-- ==========================================
+       MÓDULO 1: MICROSCOPIA CONFOCAL UV & CÉLULAS
+       ========================================== -->
+  <g transform="translate(35, 30)">
+    <!-- Chassis do Módulo -->
+    <rect x="0" y="0" width="165" height="215" rx="10" fill="#081B33" stroke="rgba(0,180,255,0.35)" stroke-width="1.5"/>
+    <rect x="8" y="8" width="149" height="199" rx="6" fill="#040e1e" opacity="0.85"/>
+
+    <!-- Título do Módulo -->
+    <rect x="14" y="14" width="137" height="22" rx="4" fill="rgba(0,180,255,0.15)"/>
+    <circle cx="24" cy="25" r="3.5" fill="#00F0FF" filter="url(#sciNeon)"/>
+    <text x="82" y="29" fill="#30D5FF" font-family="'Orbitron', sans-serif" font-size="8" font-weight="700" text-anchor="middle" letter-spacing="1">400x UV CONFOCAL</text>
+
+    <!-- Campo de Visão Celular Circular Grande -->
+    <circle cx="82" cy="100" r="50" fill="#0d2440" stroke="url(#sciGrad)" stroke-width="2" filter="url(#sciNeon)"/>
+    <circle cx="82" cy="100" r="48" fill="#06162a"/>
+
+    <!-- Células Fluoróforas em Fluorescência Neon -->
+    <circle cx="68" cy="88" r="14" fill="none" stroke="#00F0FF" stroke-width="1.8" filter="url(#sciNeon)"/>
+    <circle cx="68" cy="88" r="5" fill="#FFFFFF" filter="url(#sciNeon)"/>
+
+    <circle cx="98" cy="108" r="12" fill="none" stroke="#00E5A0" stroke-width="1.8" filter="url(#sciNeon)"/>
+    <circle cx="98" cy="108" r="4" fill="#00E5A0" filter="url(#sciNeon)"/>
+
+    <circle cx="94" cy="78" r="9" fill="none" stroke="#30D5FF" stroke-width="1.4" opacity="0.8"/>
+    <circle cx="94" cy="78" r="3" fill="#30D5FF"/>
+
+    <circle cx="66" cy="116" r="7" fill="none" stroke="#8B5CF6" stroke-width="1.2" opacity="0.75"/>
+    <circle cx="66" cy="116" r="2.5" fill="#8B5CF6"/>
+
+    <!-- Retículo de Foco em Cruz -->
+    <line x1="38" y1="100" x2="126" y2="100" stroke="rgba(0,180,255,0.3)" stroke-width="0.8" stroke-dasharray="2 3"/>
+    <line x1="82" y1="56" x2="82" y2="144" stroke="rgba(0,180,255,0.3)" stroke-width="0.8" stroke-dasharray="2 3"/>
+
+    <!-- Badge Inferior -->
+    <rect x="14" y="165" width="137" height="26" rx="4" fill="rgba(0,180,255,0.1)" stroke="rgba(0,180,255,0.3)" stroke-width="0.8"/>
+    <text x="82" y="181" fill="#30D5FF" font-family="'Orbitron', sans-serif" font-size="8" font-weight="700" text-anchor="middle">FLUOROPHORE MAP</text>
+  </g>
+
+  <!-- ==========================================
+       MÓDULO 2: HÉLICE DE DNA CIBERNÉTICA & GENOMA
+       ========================================== -->
+  <g transform="translate(225, 30)">
+    <!-- Chassis do Módulo Central -->
+    <rect x="0" y="0" width="165" height="215" rx="10" fill="#081B33" stroke="rgba(0,229,160,0.35)" stroke-width="1.5"/>
+    <rect x="8" y="8" width="149" height="199" rx="6" fill="#040e1e" opacity="0.85"/>
+
+    <!-- Título do Módulo -->
+    <rect x="14" y="14" width="137" height="22" rx="4" fill="rgba(0,229,160,0.15)"/>
+    <circle cx="24" cy="25" r="3.5" fill="#00E5A0" filter="url(#sciNeon)"/>
+    <text x="82" y="29" fill="#00E5A0" font-family="'Orbitron', sans-serif" font-size="8" font-weight="700" text-anchor="middle" letter-spacing="1">GENOME Z/W LOCUS</text>
+
+    <!-- Hélice Dupla em Alta Definição -->
+    <g transform="translate(82, 48)">
+      <!-- Filamento A (Ciano) -->
+      <path d="M 0 0 Q 24 24 0 48 Q -24 72 0 96 Q 24 120 0 144" 
+            stroke="#00F0FF" stroke-width="3" fill="none" filter="url(#sciNeon)"/>
+      <!-- Filamento B (Verde Neon) -->
+      <path d="M 0 0 Q -24 24 0 48 Q 24 72 0 96 Q -24 120 0 144" 
+            stroke="#00E5A0" stroke-width="3" fill="none" filter="url(#sciNeon)"/>
+
+      <!-- Pares de Bases / Conectores -->
+      <g stroke="#64748b" stroke-width="1.8">
+        <line x1="-15" y1="16" x2="15" y2="16"/>
+        <line x1="-22" y1="32" x2="22" y2="32"/>
+        <line x1="-15" y1="48" x2="15" y2="48"/>
+        <line x1="-15" y1="64" x2="15" y2="64"/>
+        <line x1="-22" y1="80" x2="22" y2="80"/>
+        <line x1="-15" y1="96" x2="15" y2="96"/>
+        <line x1="-15" y1="112" x2="15" y2="112"/>
+        <line x1="-22" y1="128" x2="22" y2="128"/>
+      </g>
+
+      <!-- Chips / Marcadores de Biomarcador Sexual ZW -->
+      <circle cx="0" cy="32" r="5" fill="#FFFFFF" filter="url(#sciNeon)"/>
+      <circle cx="0" cy="80" r="5" fill="#00E5A0" filter="url(#sciNeon)"/>
+      <circle cx="0" cy="128" r="4.5" fill="#00F0FF" filter="url(#sciNeon)"/>
+    </g>
+
+    <!-- Badge Inferior -->
+    <rect x="14" y="202" width="137" height="26" rx="4" fill="rgba(0,229,160,0.1)" stroke="rgba(0,229,160,0.3)" stroke-width="0.8"/>
+    <text x="82" y="218" fill="#00E5A0" font-family="'Orbitron', sans-serif" font-size="8" font-weight="700" text-anchor="middle">SEX CHROMOSOME ID</text>
+  </g>
+
+  <!-- ==========================================
+       MÓDULO 3: ESPECTROFOTOMETRIA DE ABSORÇÃO
+       ========================================== -->
+  <g transform="translate(415, 30)">
+    <!-- Chassis do Módulo -->
+    <rect x="0" y="0" width="170" height="215" rx="10" fill="#081B33" stroke="rgba(0,180,255,0.35)" stroke-width="1.5"/>
+    <rect x="8" y="8" width="154" height="199" rx="6" fill="#040e1e" opacity="0.85"/>
+
+    <!-- Título do Módulo -->
+    <rect x="14" y="14" width="142" height="22" rx="4" fill="rgba(0,180,255,0.15)"/>
+    <circle cx="24" cy="25" r="3.5" fill="#30D5FF" filter="url(#sciNeon)"/>
+    <text x="86" y="29" fill="#30D5FF" font-family="'Orbitron', sans-serif" font-size="8" font-weight="700" text-anchor="middle" letter-spacing="1">ABSORBANCE (450-850)</text>
+
+    <!-- Grade do Gráfico Espectral -->
+    <g transform="translate(14, 46)">
+      <rect x="0" y="0" width="142" height="106" rx="4" fill="rgba(8,27,51,0.5)" stroke="rgba(0,180,255,0.2)" stroke-width="0.8"/>
+      
+      <!-- Linhas de Grade -->
+      <g stroke="rgba(0,180,255,0.1)" stroke-width="0.7">
+        <line x1="8" y1="28" x2="134" y2="28"/>
+        <line x1="8" y1="54" x2="134" y2="54"/>
+        <line x1="8" y1="80" x2="134" y2="80"/>
+        <line x1="42" y1="8" x2="42" y2="98"/>
+        <line x1="76" y1="8" x2="76" y2="98"/>
+        <line x1="110" y1="8" x2="110" y2="98"/>
+      </g>
+
+      <!-- Área Sob a Curva Principal -->
+      <path d="M 12 88 L 30 82 L 48 74 L 64 34 L 80 20 L 96 44 L 112 66 L 132 82 L 132 98 L 12 98 Z" 
+            fill="url(#curveFillA)"/>
+
+      <!-- Curva de Absorção Principal (Macho - Azul/Ciano) -->
+      <path d="M 12 88 L 30 82 L 48 74 L 64 34 L 80 20 L 96 44 L 112 66 L 132 82" 
+            stroke="#00F0FF" stroke-width="2.6" fill="none" filter="url(#sciNeon)"/>
+
+      <!-- Curva de Absorção Diferencial (Fêmea - Verde Neon Tracejado) -->
+      <path d="M 12 88 L 30 84 L 48 78 L 64 54 L 80 38 L 96 56 L 112 74 L 132 86" 
+            stroke="#00E5A0" stroke-width="2" stroke-dasharray="4 2.5" fill="none" opacity="0.85"/>
+
+      <!-- Ponto de Pico Máximo -->
+      <circle cx="80" cy="20" r="4.5" fill="#FFFFFF" filter="url(#sciNeon)"/>
+      <text x="80" y="12" fill="#30D5FF" font-family="'Orbitron', sans-serif" font-size="7" font-weight="700" text-anchor="middle">Δ ABSORB</text>
+    </g>
+
+    <!-- Legenda Inferior -->
+    <g transform="translate(14, 166)">
+      <rect x="0" y="0" width="142" height="26" rx="4" fill="rgba(0,180,255,0.08)" stroke="rgba(0,180,255,0.25)" stroke-width="0.8"/>
+      <rect x="12" y="11" width="8" height="4" rx="2" fill="#00F0FF"/>
+      <text x="24" y="16" fill="#C5D0DC" font-family="'Orbitron', sans-serif" font-size="7">Macho</text>
+      <rect x="80" y="11" width="8" height="4" rx="2" fill="#00E5A0"/>
+      <text x="92" y="16" fill="#C5D0DC" font-family="'Orbitron', sans-serif" font-size="7">Fêmea</text>
+    </g>
+  </g>
 </svg>

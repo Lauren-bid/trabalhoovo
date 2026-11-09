@@ -1,23 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="beamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00B4FF"/>
-      <stop offset="100%" stop-color="#30D5FF"/>
+    <linearGradient id="beam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00B4FF" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#30D5FF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#00B4FF" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="eggG" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#142c48"/>
+      <stop offset="100%" stop-color="#081B33"/>
     </linearGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="beamGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <!-- Egg silhouette -->
-  <ellipse cx="200" cy="150" rx="60" ry="80" fill="#081B33"/>
-  <!-- Optical beam -->
-  <line x1="80" y1="150" x2="320" y2="150" stroke="url(#beamGrad)" stroke-width="8" filter="url(#glow)"/>
-  <!-- Spectral wave patterns -->
-  <path d="M80 150 q40 -30 80 0 t80 0 t80 0" stroke="#00E5A0" stroke-width="2" fill="none" opacity="0.6"/>
-  <path d="M80 150 q40 -15 80 0 t80 0 t80 0" stroke="#00B4FF" stroke-width="2" fill="none" opacity="0.4"/>
+
+  <!-- Egg -->
+  <ellipse cx="200" cy="155" rx="52" ry="68" fill="url(#eggG)" stroke="rgba(0,180,255,0.2)" stroke-width="1"/>
+
+  <!-- Main scan beam through egg -->
+  <rect x="60" y="148" width="280" height="6" rx="3" fill="url(#beam)" filter="url(#beamGlow)" opacity="0.8"/>
+  <rect x="60" y="150" width="280" height="2" rx="1" fill="#30D5FF" opacity="0.9"/>
+
+  <!-- Secondary beams -->
+  <rect x="80" y="128" width="240" height="2" rx="1" fill="#00B4FF" opacity="0.25"/>
+  <rect x="80" y="172" width="240" height="2" rx="1" fill="#00E5A0" opacity="0.25"/>
+
+  <!-- Emitter left -->
+  <rect x="38" y="126" width="22" height="54" rx="4" fill="#081B33" stroke="rgba(0,180,255,0.4)" stroke-width="1"/>
+  <circle cx="49" cy="137" r="3" fill="#00B4FF" filter="url(#glow)" opacity="0.8"/>
+  <circle cx="49" cy="151" r="4" fill="#30D5FF" filter="url(#glow)"/>
+  <circle cx="49" cy="165" r="3" fill="#00B4FF" filter="url(#glow)" opacity="0.8"/>
+
+  <!-- Receiver right -->
+  <rect x="340" y="126" width="22" height="54" rx="4" fill="#081B33" stroke="rgba(0,229,160,0.4)" stroke-width="1"/>
+  <circle cx="351" cy="137" r="3" fill="#00E5A0" filter="url(#glow)" opacity="0.8"/>
+  <circle cx="351" cy="151" r="4" fill="#4affc4" filter="url(#glow)"/>
+  <circle cx="351" cy="165" r="3" fill="#00E5A0" filter="url(#glow)" opacity="0.8"/>
+
+  <!-- Spectral wave overlay -->
+  <path d="M80 150 q15 -18 30 0 q15 18 30 0 q15 -18 30 0 q15 18 30 0 q15 -18 30 0 q15 18 30 0" stroke="#00E5A0" stroke-width="1.2" fill="none" opacity="0.35"/>
+
+  <!-- Wavelength label -->
+  <rect x="125" y="68" width="150" height="24" rx="12" fill="rgba(0,180,255,0.1)" stroke="rgba(0,180,255,0.3)" stroke-width="0.8"/>
+  <text x="200" y="84" text-anchor="middle" font-family="'Exo 2', sans-serif" font-size="9" fill="#30D5FF" letter-spacing="0.08em" font-weight="600">MULTI-λ 450–850nm</text>
+
+  <!-- Bottom status -->
+  <text x="200" y="260" text-anchor="middle" font-family="'Exo 2', sans-serif" font-size="8" fill="#6B7B8D" letter-spacing="0.06em">ZERO CONTATO PERFURANTE</text>
 </svg>

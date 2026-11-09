@@ -1,22 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="eggGrd" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a5c"/>
+      <stop offset="50%" stop-color="#0d2440"/>
+      <stop offset="100%" stop-color="#081B33"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00B4FF"/>
       <stop offset="100%" stop-color="#00E5A0"/>
     </linearGradient>
+    <radialGradient id="warmGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,180,255,0.15)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <!-- Stylized egg in tray -->
-  <rect x="50" y="200" width="300" height="30" fill="#081B33"/> <!-- tray base -->
-  <ellipse cx="200" cy="180" rx="50" ry="70" fill="url(#grad)" filter="url(#glow)"/>
-  <!-- Heat waves -->
-  <path d="M180 120 q20 -30 40 0" stroke="#00E5A0" stroke-width="2" fill="none" opacity="0.7"/>
-  <path d="M190 110 q20 -30 40 0" stroke="#00E5A0" stroke-width="2" fill="none" opacity="0.5"/>
+
+  <!-- Warm ambient glow -->
+  <ellipse cx="200" cy="145" rx="110" ry="110" fill="url(#warmGlow)"/>
+
+  <!-- Tray / holder -->
+  <path d="M110 230 Q120 215 200 215 Q280 215 290 230 L300 240 Q200 248 100 240 Z" fill="#081B33" stroke="rgba(0,180,255,0.2)" stroke-width="1"/>
+
+  <!-- Egg -->
+  <ellipse cx="200" cy="165" rx="52" ry="68" fill="url(#eggGrd)" stroke="rgba(0,180,255,0.2)" stroke-width="1.2"/>
+  <!-- Egg inner highlight -->
+  <ellipse cx="190" cy="140" rx="24" ry="18" fill="rgba(0,180,255,0.06)"/>
+
+  <!-- Temperature indicators -->
+  <g opacity="0.7">
+    <path d="M165 88 q8 -14 16 0" stroke="#00E5A0" stroke-width="1.5" fill="none"/>
+    <path d="M185 78 q8 -14 16 0" stroke="#00E5A0" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <path d="M205 84 q8 -14 16 0" stroke="#00E5A0" stroke-width="1.5" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- Temperature badge -->
+  <rect x="145" y="50" width="110" height="26" rx="13" fill="rgba(0,229,160,0.1)" stroke="rgba(0,229,160,0.3)" stroke-width="0.8"/>
+  <text x="200" y="67" text-anchor="middle" font-family="'Exo 2', sans-serif" font-size="9" fill="#4affc4" letter-spacing="0.08em" font-weight="600">37.8°C · 52% RH</text>
+
+  <!-- Small tray cells -->
+  <rect x="100" y="240" width="24" height="18" rx="3" fill="rgba(0,180,255,0.05)" stroke="rgba(0,180,255,0.12)" stroke-width="0.6"/>
+  <rect x="128" y="240" width="24" height="18" rx="3" fill="rgba(0,180,255,0.05)" stroke="rgba(0,180,255,0.12)" stroke-width="0.6"/>
+  <rect x="248" y="240" width="24" height="18" rx="3" fill="rgba(0,180,255,0.05)" stroke="rgba(0,180,255,0.12)" stroke-width="0.6"/>
+  <rect x="276" y="240" width="24" height="18" rx="3" fill="rgba(0,180,255,0.05)" stroke="rgba(0,180,255,0.12)" stroke-width="0.6"/>
+
+  <!-- Subtle D-04 marker -->
+  <text x="200" y="278" text-anchor="middle" font-family="'Exo 2', sans-serif" font-size="8" fill="#6B7B8D" letter-spacing="0.06em">JANELA D-04</text>
 </svg>

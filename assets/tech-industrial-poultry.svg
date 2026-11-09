@@ -1,30 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 420 250" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00B4FF"/>
-      <stop offset="100%" stop-color="#30D5FF"/>
+    <linearGradient id="indGradPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF"/>
+      <stop offset="50%" stop-color="#00B4FF"/>
+      <stop offset="100%" stop-color="#00E5A0"/>
     </linearGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+    <linearGradient id="beltMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#18365a"/>
+      <stop offset="50%" stop-color="#0d233e"/>
+      <stop offset="100%" stop-color="#061324"/>
+    </linearGradient>
+    <radialGradient id="indBackglow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#00E5A0" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#00B4FF" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#020D1C" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="indNeon" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge>
-        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
-  <!-- Conveyor belt -->
-  <rect x="30" y="220" width="340" height="30" fill="#081B33"/>
-  <!-- Eggs on belt -->
-  <ellipse cx="80" cy="210" rx="30" ry="40" fill="#081B33"/>
-  <ellipse cx="180" cy="210" rx="30" ry="40" fill="#081B33"/>
-  <ellipse cx="280" cy="210" rx="30" ry="40" fill="#081B33"/>
-  <ellipse cx="380" cy="210" rx="30" ry="40" fill="#081B33"/>
-  <!-- Machinery silhouette -->
-  <path d="M100 150 h200 v30 h-200 z" fill="#081B33"/>
-  <!-- LEDs -->
-  <circle cx="120" cy="165" r="5" fill="url(#grad)" filter="url(#glow)"/>
-  <circle cx="380" cy="165" r="5" fill="url(#grad)" filter="url(#glow)"/>
-  <!-- Efficiency indicator -->
-  <text x="200" y="100" text-anchor="middle" font-family="Orbitron" font-size="28" fill="#C5D0DC">INDÚSTRIA DE AVICULTURA</text>
+
+  <!-- Brilho Atmosférico de Fundo -->
+  <rect width="420" height="250" fill="url(#indBackglow)"/>
+
+  <!-- ==========================================
+       PORTAL DE ESCANEAMENTO ÓPTICO INDUSTRIAL
+       ========================================== -->
+  <!-- Arco Superior do Scanner -->
+  <path d="M 60 70 Q 210 20 360 70" fill="none" stroke="url(#indGradPrimary)" stroke-width="3" opacity="0.9" filter="url(#indNeon)"/>
+  <path d="M 75 78 Q 210 35 345 78" fill="none" stroke="#00B4FF" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.6"/>
+
+  <!-- Emissores Laser Verticais do Portal -->
+  <g transform="translate(85, 58)">
+    <rect x="0" y="0" width="36" height="22" rx="4" fill="#081B33" stroke="#00B4FF" stroke-width="1.2"/>
+    <circle cx="18" cy="11" r="4" fill="#00B4FF" filter="url(#indNeon)"/>
+    <polygon points="10,22 26,22 36,132 0,132" fill="url(#indGradPrimary)" opacity="0.18"/>
+    <line x1="18" y1="22" x2="18" y2="132" stroke="#00B4FF" stroke-width="2" opacity="0.8" filter="url(#indNeon)"/>
+  </g>
+
+  <g transform="translate(192, 42)">
+    <rect x="0" y="0" width="36" height="22" rx="4" fill="#081B33" stroke="#00E5A0" stroke-width="1.4"/>
+    <circle cx="18" cy="11" r="4.5" fill="#00E5A0" filter="url(#indNeon)"/>
+    <polygon points="10,22 26,22 38,132 -2,132" fill="url(#indGradPrimary)" opacity="0.28"/>
+    <line x1="18" y1="22" x2="18" y2="132" stroke="#00E5A0" stroke-width="2.5" filter="url(#indNeon)"/>
+    <!-- Cortina de Luz Neon Central -->
+    <line x1="18" y1="22" x2="18" y2="132" stroke="#FFFFFF" stroke-width="1" opacity="0.9"/>
+  </g>
+
+  <g transform="translate(299, 58)">
+    <rect x="0" y="0" width="36" height="22" rx="4" fill="#081B33" stroke="#00F0FF" stroke-width="1.2"/>
+    <circle cx="18" cy="11" r="4" fill="#00F0FF" filter="url(#indNeon)"/>
+    <polygon points="10,22 26,22 36,132 0,132" fill="url(#indGradPrimary)" opacity="0.18"/>
+    <line x1="18" y1="22" x2="18" y2="132" stroke="#00F0FF" stroke-width="2" opacity="0.8" filter="url(#indNeon)"/>
+  </g>
+
+  <!-- ==========================================
+       ESTEIRA ROLANTE INDUSTRIAL & BANDEJA DE OVOS
+       ========================================== -->
+  <!-- Trilho Guia da Esteira com Iluminação LED -->
+  <path d="M 25 142 L 395 142" stroke="#00B4FF" stroke-width="2.5" opacity="0.8"/>
+  <path d="M 25 146 L 395 146" stroke="#00E5A0" stroke-width="1" opacity="0.4"/>
+  
+  <!-- Corpo da Esteira em Perspectiva -->
+  <polygon points="20,146 400,146 385,178 35,178" fill="url(#beltMetal)" stroke="rgba(0,180,255,0.4)" stroke-width="1.2"/>
+  
+  <!-- Ranhuras da Esteira em Movimento -->
+  <g stroke="rgba(0,180,255,0.25)" stroke-width="1">
+    <line x1="60" y1="146" x2="70" y2="178"/>
+    <line x1="110" y1="146" x2="118" y2="178"/>
+    <line x1="160" y1="146" x2="166" y2="178"/>
+    <line x1="210" y1="146" x2="214" y2="178"/>
+    <line x1="260" y1="146" x2="262" y2="178"/>
+    <line x1="310" y1="146" x2="310" y2="178"/>
+    <line x1="360" y1="146" x2="358" y2="178"/>
+  </g>
+
+  <!-- OVOS BIOTECNOLÓGICOS NA ESTEIRA EM ALTA RESOLUÇÃO -->
+  <!-- Ovo 1 (Entrada na Linha) -->
+  <g transform="translate(93, 106)">
+    <ellipse cx="10" cy="24" rx="14" ry="19" fill="#0d2644" stroke="#00B4FF" stroke-width="1.6"/>
+    <ellipse cx="7" cy="18" rx="6" ry="8" fill="#30D5FF" opacity="0.4"/>
+  </g>
+
+  <!-- Ovo 2 (NO CENTRO DO SCANNER - ILUMINAÇÃO MÁXIMA) -->
+  <g transform="translate(196, 96)">
+    <!-- Pulso e Halo de Escaneamento Ativo -->
+    <ellipse cx="14" cy="28" rx="28" ry="34" fill="none" stroke="#00E5A0" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.75" filter="url(#indNeon)"/>
+    <ellipse cx="14" cy="28" rx="18" ry="24" fill="#123e66" stroke="#00E5A0" stroke-width="2.4" filter="url(#indNeon)"/>
+    <!-- Núcleo Ativado -->
+    <circle cx="14" cy="28" r="8" fill="#FFFFFF" filter="url(#indNeon)"/>
+    <!-- Raio Escaneador Transversal -->
+    <line x1="-12" y1="28" x2="40" y2="28" stroke="#00F0FF" stroke-width="2.4" filter="url(#indNeon)"/>
+  </g>
+
+  <!-- Ovo 3 (Classificado com Sucesso) -->
+  <g transform="translate(307, 106)">
+    <ellipse cx="10" cy="24" rx="14" ry="19" fill="#0d2644" stroke="#00E5A0" stroke-width="1.8" filter="url(#indNeon)"/>
+    <circle cx="10" cy="24" r="5" fill="#00E5A0" opacity="0.8"/>
+  </g>
+
+  <!-- ==========================================
+       BADGES E STATUS HUD EM TEMPO REAL
+       ========================================== -->
+  <g transform="translate(35, 194)">
+    <rect x="0" y="0" width="160" height="28" rx="14" fill="#081B33" stroke="rgba(0,180,255,0.4)" stroke-width="1.2"/>
+    <circle cx="16" cy="14" r="4" fill="#00B4FF" filter="url(#indNeon)"/>
+    <text x="88" y="18" fill="#30D5FF" font-family="'Orbitron', sans-serif" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">45.000 OVOS/H</text>
+  </g>
+
+  <g transform="translate(225, 194)">
+    <rect x="0" y="0" width="160" height="28" rx="14" fill="#081B33" stroke="rgba(0,229,160,0.4)" stroke-width="1.2"/>
+    <circle cx="16" cy="14" r="4" fill="#00E5A0" filter="url(#indNeon)"/>
+    <text x="88" y="18" fill="#00E5A0" font-family="'Orbitron', sans-serif" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1">100% AUTOMATIZADO</text>
+  </g>
 </svg>

@@ -1,28 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="specGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#00B4FF"/>
-      <stop offset="100%" stop-color="#00E5A0"/>
+      <stop offset="50%" stop-color="#00E5A0"/>
+      <stop offset="100%" stop-color="#30D5FF"/>
     </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <!-- Axes -->
-  <line x1="50" y1="250" x2="350" y2="250" stroke="#C5D0DC" stroke-width="2"/>
-  <line x1="50" y1="250" x2="50" y2="50" stroke="#C5D0DC" stroke-width="2"/>
-  <!-- X axis label -->
-  <text x="200" y="285" text-anchor="middle" font-family="Inter" font-size="14" fill="#C5D0DC">Wavelength (nm)</text>
-  <!-- Y axis label -->
-  <text x="20" y="150" text-anchor="middle" font-family="Inter" font-size="14" fill="#C5D0DC" transform="rotate(-90 20,150)">Absorption</text>
-  <!-- Data curve -->
-  <path d="M50 200 C100 180 150 110 200 100 C250 90 300 150 350 120" fill="none" stroke="url(#grad)" stroke-width="3" filter="url(#glow)"/>
-  <!-- Highlights -->
-  <circle cx="200" cy="100" r="4" fill="#00E5A0"/>
-  <text x="210" y="95" font-family="Inter" font-size="12" fill="#C5D0DC">Peak</text>
+
+  <!-- Chart background -->
+  <rect x="30" y="20" width="240" height="120" rx="6" fill="rgba(8,27,51,0.5)" stroke="rgba(0,180,255,0.15)" stroke-width="0.8"/>
+
+  <!-- Grid lines -->
+  <line x1="50" y1="40" x2="250" y2="40" stroke="rgba(0,180,255,0.06)" stroke-width="0.5"/>
+  <line x1="50" y1="60" x2="250" y2="60" stroke="rgba(0,180,255,0.06)" stroke-width="0.5"/>
+  <line x1="50" y1="80" x2="250" y2="80" stroke="rgba(0,180,255,0.06)" stroke-width="0.5"/>
+  <line x1="50" y1="100" x2="250" y2="100" stroke="rgba(0,180,255,0.06)" stroke-width="0.5"/>
+  <line x1="50" y1="120" x2="250" y2="120" stroke="rgba(0,180,255,0.06)" stroke-width="0.5"/>
+
+  <!-- Vertical grid -->
+  <line x1="90" y1="25" x2="90" y2="135" stroke="rgba(0,180,255,0.04)" stroke-width="0.5"/>
+  <line x1="130" y1="25" x2="130" y2="135" stroke="rgba(0,180,255,0.04)" stroke-width="0.5"/>
+  <line x1="170" y1="25" x2="170" y2="135" stroke="rgba(0,180,255,0.04)" stroke-width="0.5"/>
+  <line x1="210" y1="25" x2="210" y2="135" stroke="rgba(0,180,255,0.04)" stroke-width="0.5"/>
+
+  <!-- Absorbance curve A (Male) -->
+  <path d="M50 110 L70 105 L90 100 L110 88 L125 65 L140 42 L155 38 L170 45 L185 60 L200 72 L215 85 L230 95 L250 105" stroke="#00B4FF" stroke-width="2" fill="none" opacity="0.8" filter="url(#glow)"/>
+  <!-- Area under curve A -->
+  <path d="M50 110 L70 105 L90 100 L110 88 L125 65 L140 42 L155 38 L170 45 L185 60 L200 72 L215 85 L230 95 L250 105 L250 125 L50 125 Z" fill="url(#specGrad)" opacity="0.04"/>
+
+  <!-- Absorbance curve B (Female) -->
+  <path d="M50 108 L70 103 L90 95 L110 80 L125 58 L140 50 L155 55 L170 65 L185 78 L200 88 L215 95 L230 102 L250 108" stroke="#00E5A0" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4 2"/>
+
+  <!-- Peak markers -->
+  <circle cx="155" cy="38" r="3.5" fill="#00B4FF" filter="url(#glow)"/>
+  <circle cx="140" cy="50" r="3" fill="#00E5A0" filter="url(#glow)" opacity="0.8"/>
+
+  <!-- Difference marker -->
+  <line x1="147" y1="42" x2="147" y2="52" stroke="#30D5FF" stroke-width="1.5" opacity="0.6"/>
+  <text x="157" y="32" font-family="'Exo 2', sans-serif" font-size="6" fill="#30D5FF" opacity="0.7">Δ peak</text>
+
+  <!-- X-axis labels -->
+  <text x="50" y="145" font-family="'Exo 2', sans-serif" font-size="6" fill="#6B7B8D">450nm</text>
+  <text x="145" y="145" font-family="'Exo 2', sans-serif" font-size="6" fill="#6B7B8D">650nm</text>
+  <text x="235" y="145" font-family="'Exo 2', sans-serif" font-size="6" fill="#6B7B8D">850nm</text>
+
+  <!-- Legend -->
+  <rect x="50" y="155" width="8" height="3" rx="1.5" fill="#00B4FF"/>
+  <text x="62" y="158" font-family="'Exo 2', sans-serif" font-size="6" fill="#C5D0DC">Macho</text>
+  <rect x="100" y="155" width="8" height="3" rx="1.5" fill="#00E5A0"/>
+  <text x="112" y="158" font-family="'Exo 2', sans-serif" font-size="6" fill="#C5D0DC">Fêmea</text>
+
+  <!-- Y-axis label -->
+  <text x="35" y="82" font-family="'Exo 2', sans-serif" font-size="5" fill="#6B7B8D" transform="rotate(-90 35 82)">Absorção</text>
 </svg>

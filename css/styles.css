@@ -323,19 +323,21 @@ button {
 }
 
 .nav__logo-img {
-  height: 42px;
+  height: 44px;
   width: auto;
+  max-width: 220px;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(0, 180, 255, 0.35))
-          drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-  transition: filter var(--dur-normal) var(--ease-out-expo);
+  filter: drop-shadow(0 0 16px rgba(0, 180, 255, 0.45))
+          drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  transition: transform var(--dur-normal) var(--ease-out-expo),
+              filter var(--dur-normal) var(--ease-out-expo);
 }
 
 .nav__logo:hover .nav__logo-img {
-  filter: drop-shadow(0 0 22px rgba(0, 180, 255, 0.55))
-          drop-shadow(0 0 40px rgba(0, 229, 160, 0.2))
-          drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 24px rgba(0, 180, 255, 0.65))
+          drop-shadow(0 0 40px rgba(0, 229, 160, 0.3));
 }
 
 .nav__links {
@@ -1411,27 +1413,52 @@ button {
 }
 
 .feature-card__img-wrap {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   margin-bottom: var(--space-lg);
-  background: rgba(2, 13, 28, 0.6);
-  border: 1px solid rgba(0, 180, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-md);
+  background: #020D1C;
+  border: 1px solid rgba(0, 180, 255, 0.22);
+  height: 220px;
+  position: relative;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 180, 255, 0.12);
+  transition: border-color var(--dur-normal), box-shadow var(--dur-normal);
+}
+
+.feature-card--large .feature-card__img-wrap,
+.feature-card--wide .feature-card__img-wrap {
+  height: 250px;
+}
+
+.feature-card__img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(2, 13, 28, 0.1) 0%, transparent 40%, rgba(2, 13, 28, 0.45) 100%),
+              radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(2, 13, 28, 0.5) 100%);
+  border-radius: inherit;
+  transition: opacity var(--dur-normal);
+}
+
+.feature-card:hover .feature-card__img-wrap {
+  border-color: rgba(0, 180, 255, 0.55);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65), 0 0 32px rgba(0, 180, 255, 0.28);
 }
 
 .feature-card__img {
-  max-height: 180px;
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 20px rgba(0, 180, 255, 0.2));
-  transition: transform var(--dur-normal) var(--ease-spring);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.96) contrast(1.06);
+  transition: transform 0.6s var(--ease-out-expo),
+              filter 0.6s var(--ease-out-expo);
+  display: block;
 }
 
 .feature-card:hover .feature-card__img {
-  transform: scale(1.04);
+  transform: scale(1.06);
+  filter: brightness(1.08) contrast(1.1);
 }
 
 .feature-card__content {
@@ -1576,41 +1603,153 @@ button {
 .science__visual {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 520px;
   border-radius: var(--radius-2xl);
-  border: 1px solid rgba(0, 180, 255, 0.22);
-  background: radial-gradient(circle at 50% 50%, rgba(8, 27, 51, 0.6) 0%, rgba(2, 13, 28, 0.95) 100%);
+  border: 1px solid rgba(0, 180, 255, 0.28);
+  background: radial-gradient(circle at 50% 50%, rgba(8, 27, 51, 0.75) 0%, rgba(2, 13, 28, 0.98) 100%);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(0, 180, 255, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), inset 0 0 50px rgba(0, 180, 255, 0.12), 0 0 35px rgba(0, 180, 255, 0.15);
 }
 
 .hex-grid-bg {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(0, 180, 255, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0, 180, 255, 0.2) 1px, transparent 1px);
   background-size: 24px 24px;
-  opacity: 0.6;
+  opacity: 0.7;
   pointer-events: none;
 }
 
-.dna-canvas-container {
+.dna-aura-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 180, 255, 0.35) 0%, rgba(0, 229, 160, 0.18) 45%, transparent 75%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
+  animation: eggGlow 5s ease-in-out infinite alternate;
+}
+
+.dna-hud-badge {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.45rem 1rem;
+  background: rgba(2, 13, 28, 0.85);
+  border: 1px solid rgba(0, 180, 255, 0.35);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(16px);
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  color: var(--clr-blue-light);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 180, 255, 0.2);
+  pointer-events: none;
+}
+
+.dna-hud-badge--top {
+  top: 20px;
+  left: 20px;
+}
+
+.dna-hud-badge--bottom {
+  bottom: 20px;
+  right: 20px;
+  color: var(--clr-green-light);
+  border-color: rgba(0, 229, 160, 0.4);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 229, 160, 0.2);
+}
+
+/* DNA Helix Image Container com Efeito Cinético Holográfico */
+.dna-image-container {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 85%;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 1200px;
+  overflow: visible;
 }
 
-.dna-canvas-container canvas {
-  width: 100% !important;
-  height: 100% !important;
-  outline: none;
-  filter: drop-shadow(0 0 25px rgba(0, 229, 160, 0.3));
+.dna-helix-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 45px rgba(0, 180, 255, 0.45))
+          drop-shadow(0 0 65px rgba(0, 229, 160, 0.28))
+          brightness(1.08) contrast(1.15);
+  transition: filter 0.5s var(--ease-out-expo);
+  border-radius: var(--radius-lg);
+  transform-style: preserve-3d;
+  will-change: transform, filter;
+  pointer-events: none;
+}
+
+/* Scanner de feixe laser que varre a fita de DNA */
+.dna-laser-scanner {
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  width: 160px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 180, 255, 0.08) 35%, 
+    rgba(0, 240, 255, 0.45) 50%, 
+    rgba(0, 229, 160, 0.25) 65%, 
+    transparent 100%);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: dnaScanSweep 4s ease-in-out infinite alternate;
+  z-index: 3;
+}
+
+/* Pulso de energia no núcleo da hélice */
+.dna-energy-glow {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 180, 255, 0.15) 0%, rgba(0, 229, 160, 0.08) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  animation: dnaEnergyPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes dnaScanSweep {
+  0% {
+    left: -12%;
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    left: 88%;
+    opacity: 0.25;
+  }
+}
+
+@keyframes dnaEnergyPulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
 }
 
 .sci-element {
@@ -2075,10 +2214,12 @@ button {
 }
 
 .footer__brand-img {
-  height: 48px;
+  height: 52px;
   width: auto;
+  max-width: 220px;
   object-fit: contain;
   margin-bottom: var(--space-md);
+  border-radius: var(--radius-sm);
   filter: drop-shadow(0 0 14px rgba(0, 180, 255, 0.35))
           drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
   transition: filter var(--dur-normal) var(--ease-out-expo);
@@ -2264,6 +2405,12 @@ button {
 
   .nav__burger {
     display: flex;
+  }
+
+  .feature-card__img-wrap,
+  .feature-card--large .feature-card__img-wrap,
+  .feature-card--wide .feature-card__img-wrap {
+    height: 200px;
   }
 
   .process-step-card {

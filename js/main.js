@@ -32,10 +32,8 @@ function updateActiveNavLink(scrollY) {
   const navLinks = $$('.nav__links .nav__link');
   const sections = [
     $('#tecnologia'),
-    $('#processo'),
     $('#ciencia'),
     $('#beneficios'),
-    $('#futuro'),
     $('#contato')
   ].filter(Boolean);
 
@@ -309,183 +307,73 @@ function initEgg3D() {
 
 
 
-/* ── 6. DNA HELIX (THREE.JS) ──────────────────────────────────── */
+/* ── 6. DNA HELIX CINEMATIC 3D MOTION & INTERACTION ──────────── */
 function initDnaHelix() {
-  const container = $('#dna-canvas-container');
-  if (!container) return;
+  const container = $('.science__visual');
+  const img = $('.dna-helix-img');
+  if (!container || !img) return;
 
-  if (typeof THREE === 'undefined') {
-    setTimeout(initDnaHelix, 150);
-    return;
-  }
-
-  const width = container.clientWidth || 360;
-  const height = container.clientHeight || 420;
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-  camera.position.set(0, 0, 8.2);
-
-  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(width, height);
-  renderer.domElement.style.width = '100%';
-  renderer.domElement.style.height = '100%';
-  container.innerHTML = '';
-  container.appendChild(renderer.domElement);
-
-  // Lighting
-  const ambLight = new THREE.AmbientLight(0xd0e8ff, 0.5);
-  scene.add(ambLight);
-
-  const dirLight1 = new THREE.DirectionalLight(0x0ea5e9, 1.2);
-  dirLight1.position.set(3, 4, 5);
-  scene.add(dirLight1);
-
-  const dirLight2 = new THREE.DirectionalLight(0x10b981, 0.9);
-  dirLight2.position.set(-3, -2, 4);
-  scene.add(dirLight2);
-
-  const centerPointLight = new THREE.PointLight(0x06b6d4, 1.0, 10);
-  centerPointLight.position.set(0, 0, 3);
-  scene.add(centerPointLight);
-
-  // Double Helix Assembly
-  const dnaGroup = new THREE.Group();
-  scene.add(dnaGroup);
-
-  const pairsCount = 26;
-  const totalHeight = 6.0;
-  const radius = 1.35;
-  const turns = 2.2;
-  const sphereGeo = new THREE.SphereGeometry(0.12, 16, 16);
-  const rungGeo = new THREE.CylinderGeometry(0.026, 0.026, radius * 2, 8);
-
-  const matStrandA = new THREE.MeshStandardMaterial({
-    color: 0x0ea5e9,
-    emissive: 0x0284c7,
-    emissiveIntensity: 0.5,
-    roughness: 0.22,
-    metalness: 0.3
-  });
-
-  const matStrandB = new THREE.MeshStandardMaterial({
-    color: 0x10b981,
-    emissive: 0x059669,
-    emissiveIntensity: 0.5,
-    roughness: 0.22,
-    metalness: 0.3
-  });
-
-  const matRung = new THREE.MeshStandardMaterial({
-    color: 0x64748b,
-    emissive: 0x334155,
-    emissiveIntensity: 0.2,
-    roughness: 0.3,
-    metalness: 0.6,
-    transparent: true,
-    opacity: 0.85
-  });
-
-  for (let i = 0; i < pairsCount; i++) {
-    const t = i / (pairsCount - 1);
-    const y = (t - 0.5) * totalHeight;
-    const angle = t * Math.PI * 2 * turns;
-
-    const x1 = Math.cos(angle) * radius;
-    const z1 = Math.sin(angle) * radius;
-    const x2 = Math.cos(angle + Math.PI) * radius;
-    const z2 = Math.sin(angle + Math.PI) * radius;
-
-    // Node A (Blue / Cyan)
-    const sphereA = new THREE.Mesh(sphereGeo, matStrandA);
-    sphereA.position.set(x1, y, z1);
-    dnaGroup.add(sphereA);
-
-    // Node B (Green / Turquoise)
-    const sphereB = new THREE.Mesh(sphereGeo, matStrandB);
-    sphereB.position.set(x2, y, z2);
-    dnaGroup.add(sphereB);
-
-    // Connecting Rung (Base Pair Bond)
-    const rung = new THREE.Mesh(rungGeo, matRung);
-    rung.position.set(0, y, 0);
-    rung.rotation.z = Math.PI / 2;
-    rung.rotation.y = -angle;
-    dnaGroup.add(rung);
-  }
-
-  // Initial scientific orientation
-  dnaGroup.rotation.z = 0.22;
-  dnaGroup.rotation.x = 0.12;
-
-  // Interactive mouse rotation
-  let isDnaDragging = false;
-  let prevDnaMouse = { x: 0, y: 0 };
-  let dnaTargetRotY = 0;
-  let dnaCurrentRotY = 0;
-  let dnaTiltX = 0;
-
-  container.addEventListener('pointerdown', (e) => {
-    isDnaDragging = true;
-    prevDnaMouse = { x: e.clientX, y: e.clientY };
-  });
-
-  window.addEventListener('pointermove', (e) => {
-    if (!isDnaDragging) return;
-    const dx = e.clientX - prevDnaMouse.x;
-    const dy = e.clientY - prevDnaMouse.y;
-    prevDnaMouse = { x: e.clientX, y: e.clientY };
-
-    dnaTargetRotY += dx * 0.01;
-    dnaTiltX = Math.max(-0.4, Math.min(0.4, dnaTiltX + dy * 0.005));
-  });
-
-  window.addEventListener('pointerup', () => { isDnaDragging = false; });
-  window.addEventListener('pointercancel', () => { isDnaDragging = false; });
-
+  let mouseX = 0, mouseY = 0;
+  let targetRotY = 0, targetRotX = 0;
+  let currRotY = 0, currRotX = 0;
+  let isHovered = false;
+  let time = 0;
   let animId = null;
-  let isVisible = true;
+  let isDnaVisible = true;
 
-  function render() {
-    if (!isVisible || !isPageVisible) return;
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX = x * 26; // até ~13 graus de inclinação interativa
+    mouseY = -y * 16;
+    isHovered = true;
+  });
 
-    if (!isDnaDragging) {
-      dnaTargetRotY += 0.007; // Slow continuous rotation
+  container.addEventListener('mouseleave', () => {
+    isHovered = false;
+    mouseX = 0;
+    mouseY = 0;
+  });
+
+  function updateDnaMotion() {
+    if (!isDnaVisible || !isPageVisible) {
+      animId = raf(updateDnaMotion);
+      return;
     }
 
-    dnaCurrentRotY += (dnaTargetRotY - dnaCurrentRotY) * 0.08;
-    dnaGroup.rotation.y = dnaCurrentRotY;
-    dnaGroup.rotation.x = 0.12 + dnaTiltX;
+    time += 0.028;
 
-    renderer.render(scene, camera);
-    animId = raf(render);
+    // Movimento senoidal orgânico contínuo (respiração / flutuação holográfica 3D)
+    const naturalRotY = Math.sin(time * 0.9) * 11;
+    const naturalRotX = Math.cos(time * 0.7) * 5.5;
+    const naturalRotZ = Math.sin(time * 0.5) * 2;
+    const naturalTranslateY = Math.sin(time * 1.3) * 12;
+    const naturalScale = 1.02 + Math.sin(time * 0.6) * 0.02;
+
+    if (isHovered) {
+      targetRotY = naturalRotY * 0.25 + mouseX;
+      targetRotX = naturalRotX * 0.25 + mouseY;
+    } else {
+      targetRotY = naturalRotY;
+      targetRotX = naturalRotX;
+    }
+
+    // Interpolação suave e contínua com inércia
+    currRotY += (targetRotY - currRotY) * 0.08;
+    currRotX += (targetRotX - currRotX) * 0.08;
+
+    img.style.transform = `perspective(1100px) translateY(${naturalTranslateY.toFixed(2)}px) rotateY(${currRotY.toFixed(2)}deg) rotateX(${currRotX.toFixed(2)}deg) rotateZ(${naturalRotZ.toFixed(2)}deg) scale(${naturalScale.toFixed(3)})`;
+
+    animId = raf(updateDnaMotion);
   }
 
-  const resizeObs = new ResizeObserver(() => {
-    const w = container.clientWidth;
-    const h = container.clientHeight;
-    if (w === 0 || h === 0) return;
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
-  });
-  resizeObs.observe(container);
+  // Observador de visibilidade para economia de GPU/CPU
+  new IntersectionObserver(([entry]) => {
+    isDnaVisible = entry.isIntersecting;
+  }, { threshold: 0.05 }).observe(container);
 
-  const intObs = new IntersectionObserver(([entry]) => {
-    isVisible = entry.isIntersecting;
-    if (isVisible) {
-      if (!animId) render();
-    } else {
-      if (animId) {
-        cancelAnimationFrame(animId);
-        animId = null;
-      }
-    }
-  }, { threshold: 0.05 });
-  intObs.observe(container);
-
-  render();
+  updateDnaMotion();
 }
 
 /* ── 7. CTA CANVAS PARTICLES ({ } FORMATION) ──────────────────── */

@@ -1,25 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <linearGradient id="nGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00B4FF"/>
-      <stop offset="100%" stop-color="#30D5FF"/>
+      <stop offset="100%" stop-color="#00E5A0"/>
     </linearGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <!-- Embryo silhouette -->
-  <path d="M200 80 q30 20 40 60 t0 80 q-40 30 -80 0 t0 -80 q10 -40 40 -60" fill="#081B33"/>
+
+  <!-- Central brain / neural network -->
+  <!-- Core node -->
+  <circle cx="200" cy="140" r="18" fill="rgba(0,180,255,0.12)" stroke="url(#nGrad)" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="200" cy="140" r="8" fill="#00B4FF" filter="url(#glow)" opacity="0.9"/>
+
+  <!-- Layer 1 nodes -->
+  <circle cx="130" cy="100" r="10" fill="rgba(0,180,255,0.08)" stroke="#00B4FF" stroke-width="1.2"/>
+  <circle cx="130" cy="100" r="4" fill="#00B4FF" opacity="0.8"/>
+
+  <circle cx="270" cy="100" r="10" fill="rgba(0,180,255,0.08)" stroke="#00B4FF" stroke-width="1.2"/>
+  <circle cx="270" cy="100" r="4" fill="#00B4FF" opacity="0.8"/>
+
+  <circle cx="130" cy="180" r="10" fill="rgba(0,229,160,0.08)" stroke="#00E5A0" stroke-width="1.2"/>
+  <circle cx="130" cy="180" r="4" fill="#00E5A0" opacity="0.8"/>
+
+  <circle cx="270" cy="180" r="10" fill="rgba(0,229,160,0.08)" stroke="#00E5A0" stroke-width="1.2"/>
+  <circle cx="270" cy="180" r="4" fill="#00E5A0" opacity="0.8"/>
+
+  <!-- Layer 2 outer nodes -->
+  <circle cx="80" cy="140" r="6" fill="rgba(48,213,255,0.08)" stroke="#30D5FF" stroke-width="0.8"/>
+  <circle cx="80" cy="140" r="2.5" fill="#30D5FF" opacity="0.7"/>
+
+  <circle cx="320" cy="140" r="6" fill="rgba(48,213,255,0.08)" stroke="#30D5FF" stroke-width="0.8"/>
+  <circle cx="320" cy="140" r="2.5" fill="#30D5FF" opacity="0.7"/>
+
+  <circle cx="200" cy="60" r="6" fill="rgba(0,180,255,0.08)" stroke="#00B4FF" stroke-width="0.8"/>
+  <circle cx="200" cy="60" r="2.5" fill="#00B4FF" opacity="0.7"/>
+
+  <circle cx="200" cy="220" r="6" fill="rgba(0,229,160,0.08)" stroke="#00E5A0" stroke-width="0.8"/>
+  <circle cx="200" cy="220" r="2.5" fill="#00E5A0" opacity="0.7"/>
+
   <!-- Neural connections -->
-  <line x1="200" y1="80" x2="130" y2="150" stroke="#00E5A0" stroke-width="2" opacity="0.7"/>
-  <line x1="200" y1="80" x2="270" y2="150" stroke="#00E5A0" stroke-width="2" opacity="0.7"/>
-  <line x1="130" y1="150" x2="270" y2="150" stroke="#00B4FF" stroke-width="1" opacity="0.5"/>
-  <circle cx="130" cy="150" r="5" fill="#00E5A0" filter="url(#glow)"/>
-  <circle cx="270" cy="150" r="5" fill="#00E5A0" filter="url(#glow)"/>
-  <circle cx="200" cy="80" r="5" fill="#00B4FF" filter="url(#glow)"/>
+  <line x1="200" y1="140" x2="130" y2="100" stroke="#00B4FF" stroke-width="1.2" opacity="0.4"/>
+  <line x1="200" y1="140" x2="270" y2="100" stroke="#00B4FF" stroke-width="1.2" opacity="0.4"/>
+  <line x1="200" y1="140" x2="130" y2="180" stroke="#00E5A0" stroke-width="1.2" opacity="0.4"/>
+  <line x1="200" y1="140" x2="270" y2="180" stroke="#00E5A0" stroke-width="1.2" opacity="0.4"/>
+
+  <line x1="130" y1="100" x2="80" y2="140" stroke="#30D5FF" stroke-width="0.8" opacity="0.25"/>
+  <line x1="270" y1="100" x2="320" y2="140" stroke="#30D5FF" stroke-width="0.8" opacity="0.25"/>
+  <line x1="130" y1="100" x2="200" y2="60" stroke="#00B4FF" stroke-width="0.8" opacity="0.25"/>
+  <line x1="270" y1="100" x2="200" y2="60" stroke="#00B4FF" stroke-width="0.8" opacity="0.25"/>
+  <line x1="130" y1="180" x2="200" y2="220" stroke="#00E5A0" stroke-width="0.8" opacity="0.25"/>
+  <line x1="270" y1="180" x2="200" y2="220" stroke="#00E5A0" stroke-width="0.8" opacity="0.25"/>
+  <line x1="130" y1="180" x2="80" y2="140" stroke="#30D5FF" stroke-width="0.8" opacity="0.25"/>
+  <line x1="270" y1="180" x2="320" y2="140" stroke="#30D5FF" stroke-width="0.8" opacity="0.25"/>
+
+  <!-- Cross connections -->
+  <line x1="130" y1="100" x2="270" y2="180" stroke="rgba(0,180,255,0.1)" stroke-width="0.6" stroke-dasharray="4 3"/>
+  <line x1="270" y1="100" x2="130" y2="180" stroke="rgba(0,229,160,0.1)" stroke-width="0.6" stroke-dasharray="4 3"/>
+
+  <!-- Inference label -->
+  <rect x="140" y="248" width="120" height="24" rx="12" fill="rgba(0,180,255,0.1)" stroke="rgba(0,180,255,0.3)" stroke-width="0.8"/>
+  <text x="200" y="264" text-anchor="middle" font-family="'Exo 2', sans-serif" font-size="9" fill="#30D5FF" letter-spacing="0.08em" font-weight="600">INFERÊNCIA &lt; 2ms</text>
 </svg>

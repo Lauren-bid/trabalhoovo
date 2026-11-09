@@ -1,25 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="lensGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00B4FF"/>
-      <stop offset="100%" stop-color="#00E5A0"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
     </linearGradient>
+    <radialGradient id="viewGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,180,255,0.2)"/>
+      <stop offset="70%" stop-color="rgba(0,180,255,0.05)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <!-- Microscope objective lens -->
-  <circle cx="200" cy="150" r="70" fill="#081B33"/>
-  <circle cx="200" cy="150" r="50" fill="url(#grad)" filter="url(#glow)"/>
-  <!-- UV light rays -->
-  <line x1="200" y1="150" x2="70" y2="150" stroke="url(#grad)" stroke-width="3"/>
-  <line x1="200" y1="150" x2="330" y2="150" stroke="url(#grad)" stroke-width="3"/>
-  <!-- Cellular pattern -->
-  <path d="M150 110 q20 -10 40 0 t40 0 t40 0" stroke="#00E5A0" stroke-width="2" fill="none" opacity="0.6"/>
-  <path d="M150 190 q20 10 40 0 t40 0 t40 0" stroke="#00B4FF" stroke-width="2" fill="none" opacity="0.6"/>
+
+  <!-- Microscope body -->
+  <rect x="125" y="30" width="12" height="25" rx="3" fill="#081B33" stroke="url(#lensGrad)" stroke-width="1"/>
+  <rect x="118" y="10" width="26" height="24" rx="5" fill="#081B33" stroke="rgba(0,180,255,0.3)" stroke-width="0.8"/>
+
+  <!-- Microscope arm -->
+  <rect x="128" y="55" width="6" height="55" rx="2" fill="#081B33" stroke="rgba(0,180,255,0.2)" stroke-width="0.6"/>
+
+  <!-- Lens piece -->
+  <circle cx="131" cy="58" r="8" fill="rgba(0,180,255,0.12)" stroke="url(#lensGrad)" stroke-width="1.5"/>
+  <circle cx="131" cy="58" r="3" fill="#00B4FF" filter="url(#glow)" opacity="0.8"/>
+
+  <!-- Stage -->
+  <rect x="108" y="112" width="46" height="5" rx="2" fill="rgba(0,180,255,0.1)" stroke="rgba(0,180,255,0.25)" stroke-width="0.6"/>
+  <!-- Base -->
+  <rect x="100" y="128" width="62" height="7" rx="3" fill="#081B33" stroke="rgba(0,180,255,0.2)" stroke-width="0.6"/>
+
+  <!-- Viewing field on right -->
+  <circle cx="215" cy="85" r="55" fill="url(#viewGrad)" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+  <circle cx="215" cy="85" r="40" fill="none" stroke="rgba(0,180,255,0.12)" stroke-width="0.5"/>
+
+  <!-- Cellular structures in view -->
+  <circle cx="205" cy="75" r="12" fill="none" stroke="#00B4FF" stroke-width="0.8" opacity="0.6"/>
+  <circle cx="205" cy="75" r="4" fill="rgba(0,180,255,0.3)"/>
+  <circle cx="225" cy="92" r="9" fill="none" stroke="#00E5A0" stroke-width="0.8" opacity="0.6"/>
+  <circle cx="225" cy="92" r="3" fill="rgba(0,229,160,0.3)"/>
+  <circle cx="200" cy="98" r="7" fill="none" stroke="#8B5CF6" stroke-width="0.8" opacity="0.5"/>
+  <circle cx="200" cy="98" r="2.5" fill="rgba(139,92,246,0.3)"/>
+  <circle cx="230" cy="72" r="6" fill="none" stroke="#30D5FF" stroke-width="0.6" opacity="0.4"/>
+
+  <!-- Crosshair -->
+  <line x1="215" y1="62" x2="215" y2="108" stroke="rgba(0,180,255,0.15)" stroke-width="0.5"/>
+  <line x1="182" y1="85" x2="248" y2="85" stroke="rgba(0,180,255,0.15)" stroke-width="0.5"/>
+
+  <!-- Label -->
+  <text x="215" y="155" text-anchor="middle" font-family="'Exo 2', sans-serif" font-size="7" fill="#6B7B8D" letter-spacing="0.06em">400x UV CONFOCAL</text>
 </svg>
